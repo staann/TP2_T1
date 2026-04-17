@@ -1,2 +1,97 @@
-﻿com o g++ e o make e demais programas instalados 
-digite "make" neste diretório 
+﻿# Trabalho 1 - TDD: Conversor de Numerais Romanos
+
+## Objetivo
+Converter algarismos romanos para números decimais usando a metodologia TDD (Test Driven Development).
+
+## Limitacoes
+- Números romanos máximo: 3000
+- Tamanho máximo da string: 30 caracteres
+- Retorna -1 para números inválidos
+
+## Compilacao
+
+### Compilar o programa
+```bash
+g++ -std=c++11 -Wall -c romanos.cpp -o romanos.o
+g++ -std=c++11 -Wall romanos.o testa_romanos.cpp -o testa_romanos
+./testa_romanos
+```
+
+### Compilar com cobertura (gcov)
+```bash
+g++ -std=c++11 -Wall -fprofile-arcs -ftest-coverage -c romanos.cpp -o romanos.o
+g++ -std=c++11 -Wall -fprofile-arcs -ftest-coverage romanos.o testa_romanos.cpp -o testa_romanos
+./testa_romanos
+gcov romanos.cpp
+```
+
+### Depurar com GDB
+```bash
+g++ -std=c++11 -Wall -g -c romanos.cpp -o romanos.o
+g++ -std=c++11 -Wall -g romanos.o testa_romanos.cpp -o testa_romanos
+gdb ./testa_romanos
+```
+
+### Testar com Valgrind
+```bash
+valgrind --leak-check=full ./testa_romanos
+```
+
+## Estrutura do Projeto
+- romanos.hpp: Header com declaracao da funcao
+- romanos.cpp: Implementacao da conversao
+- testa_romanos.cpp: Testes usando framework CATCH
+- catch.hpp: Framework de testes
+- cpplint.py: Verificador de estilo de codigo
+- Makefile: Automacao da compilacao
+
+## Implementacao
+
+A funcao romanos_para_decimal() implementa a seguinte logica:
+
+1. Valida entrada (nao vazia, caracteres validos)
+2. Processa cada algarismo da esquerda para direita
+3. Detecta operacoes de subtracao (valores menores antes de maiores)
+4. Valida regras de repeticao (maximo 3 repeticoes, V/L/D nao repetem)
+5. Verifica limite maximo de 3000
+6. Retorna -1 para qualquer entrada invalida
+
+## Testes Implementados
+
+Foram implementados testes para:
+- Algarismos unicos (I, V, X, L, C, D, M)
+- Repeticoes validas (II, III, XX, XXX, CC, CCC, MM, MMM)
+- Operacoes de adicao (VI, VII, XV)
+- Operacoes de subtracao (IV, IX, XL, XC, CD, CM)
+- Numeros complexos (MCMXCIV = 1994, MMXXVI = 2026)
+- Algarismos invalidos
+- Repeticoes invalidas (VV, LL, DD, IIII, XXXX, CCCC)
+- Subtracoes invalidas (VX, LC, DM, IL, XM)
+- String vazia
+- Numeros maiores que 3000
+
+Total: 15 casos de teste (com 33 assertions)
+
+## Historico de Commits
+
+O desenvolvimento foi feito seguindo TDD com pelo menos 3 commits por funcionalidade principal:
+- Commits 1-3: Testes e implementacao basica
+- Commits 4-7: Validacoes e refatoracao
+- Commits 8-31: Cobertura de casos de teste
+
+Total: 31 commits no historico git
+
+## Compilacao e Execucao Rapida
+
+Cd Trabalho1_TP2/TDD_romanos/TDD_romanos
+g++ -std=c++11 -Wall -c romanos.cpp -o romanos.o
+g++ -std=c++11 -Wall romanos.o testa_romanos.cpp -o testa_romanos
+./testa_romanos
+
+Resultado esperado: "All tests passed (33 assertions in 15 test cases)"
+
+## Autor
+Desenvolvido utilizando TDD com C++ e Framework CATCH
+
+## Data
+Abril de 2026
