@@ -49,9 +49,19 @@ static bool subtracao_valida(char menor, char maior) {
   return false;
 }
 
+// Valida se a entrada eh uma string valida nao vazia
+static bool entrada_valida(char const * num_romano) {
+  return num_romano != nullptr && num_romano[0] != '\0';
+}
+
+// Valida se o resultado nao excede 3000
+static bool resultado_valido(int resultado) {
+  return resultado >= 0 && resultado <= 3000;
+}
+
 int romanos_para_decimal(char const * num_romano) {
   // String vazia eh invalida
-  if (num_romano == nullptr || num_romano[0] == '\0') {
+  if (!entrada_valida(num_romano)) {
     return -1;
   }
 
@@ -126,8 +136,8 @@ int romanos_para_decimal(char const * num_romano) {
     }
   }
 
-  // Verifica se o resultado excede 3000
-  if (resultado > 3000) {
+  // Verifica se o resultado nao excede 3000
+  if (!resultado_valido(resultado)) {
     return -1;
   }
 
