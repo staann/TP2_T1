@@ -1,0 +1,10 @@
+*.o
+*.exe
+*.a
+*.so
+*.gcov
+*.gcda
+*.gcno
+*.out
+*~
+.DS_Store
