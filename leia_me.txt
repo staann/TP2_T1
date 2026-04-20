@@ -72,14 +72,7 @@ Foram implementados testes para:
 
 Total: 15 casos de teste
 
-## Historico de Commits
 
-O desenvolvimento foi feito seguindo TDD com pelo menos 3 commits por funcionalidade principal:
-- Commits 1-3: Testes e implementacao basica
-- Commits 4-7: Validacoes e refatoracao
-- Commits 8-31: Cobertura de casos de teste
-
-Total: 31 commits no historico git
 
 ## Compilacao e Execucao Rapida
 
@@ -87,11 +80,3 @@ Cd Trabalho1_TP2/TDD_romanos/TDD_romanos
 g++ -std=c++11 -Wall -c romanos.cpp -o romanos.o
 g++ -std=c++11 -Wall romanos.o testa_romanos.cpp -o testa_romanos
 ./testa_romanos
-
-Resultado esperado: "All tests passed (33 assertions in 15 test cases)"
-
-## Autor
-Desenvolvido utilizando TDD com C++ e Framework CATCH
-
-## Data
-Abril de 2026
