@@ -1,0 +1,102 @@
+O  objetivo  deste  trabalho  é  utilizar  o  desenvolvimento  orientado  a  testes  (TDD)  para 
+resolver  o  problema  de  conversão  de  algarismos  romanos  para  algarismos  arábicos.    O 
+número em algarismos romanos poderá ser no máximo 3000.  A função deverá pegar uma 
+string  de  tamanho  até  30  caracteres  e  retornar  um  inteiro  correspondente  ao  número 
+romano.  Deverá  retornar  -1  se  o  número  romano  for  inválido.  Todas  as  strings 
+correspondentes a números romanos válidos devem retornar o valor correto (ex. XXX deve 
+retornar 30). Todas as strings correspondentes a números romanos inválidos devem retornar 
+-1 (ex. XXXX, VV,  VX, etc. devem retornar -1 ) 
+ 
+O  desenvolvimento  deverá  ser  feito  passo  a  passo  seguindo  a  metodologia  TDD.  A  cada 
+passo deve-se pensar qual é o objetivo do teste e o significado de passar ou não no teste.  
+Os resultados podem ser comparados com os números em:  
+http://numeracaoromana.babuo.com/numeros-romanos-de-1-a-3000 
+Ou outra fonte.   
+ 
+O programa deverá ser dividido em módulos e desenvolvido em C ou C++. Deverá haver 
+um arquivo romano.c (ou .cpp) e um arquivo romano.h (ou .hpp). Deverá haver também um 
+arquivo  testa_romano.c  (ou  .cpp)  cujo  objetivo  é  testar  o  funcionamento  da  biblioteca  de 
+números romanos. 
+ 
+Para cada teste, seguindo a metodologia TDD você deve criar o teste, passar no teste, e 
+refatorar, fazendo pelo menos 3 commits por teste. 
+ 
+ 
+Você deve fazer pelo menos um commit para teste que você fizer. Devem ter sido feitos 
+pelo menos 30 commits 
+ 
+O programa deve usar um makefile para executar a compilação e outros programas. 
+ 
+O programa e o módulo devem ser depurados utilizando o GDB.   
+(http://heather.cs.ucdavis.edu/~matloff/UnixAndC/CLanguage/Debug.html) 
+(https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf) 
+ 
+ 
+ 
+1)  Utilize o padrão de codificação dado em: https://google.github.io/styleguide/cppguide.html 
+quando ele não entrar em conflito com esta especificação. O código dever ser claro e bem 
+comentado. O código deve ser verificado se está de acordo com o estilo usando o cpplint 
+(https://github.com/cpplint/cpplint).  
+ 
+Utilize o cpplint desde o início da codificação pois é mais fácil adaptar o código no 
+início. 
+ 
+ 
+ 
+2) O desenvolvimento deverá ser feito utilizando um destes frameworks de teste: 
+ 
+ gtest (https://code.google.com/p/googletest/) 
+ catch (https://github.com/philsquared/Catch/blob/master/docs/tutorial.md) 
+ 
+ 
+ 
+ 
+3) Deverá ser entregue o histórico do desenvolvimento orientado a testes feitos através do 
+git (https://git-scm.com/docs/gittutorial) 
+ 
+git config --global user.name "Your Name Comes Here" 
+git config --global user.email you@yourdomain.example.com 
+git init 
+git add *  
+git commit –m “teste 1”    
+git log 
+ 
+Compactar o diretório “.git” ou equivalente enviando ele junto. 
+ 
+ 
+4) Deve ser utilizado um verificador de cobertura  
+ex.  gcov.  (http://gcc.gnu.org/onlinedocs/gcc/Gcov.html).  O  makefile  deve  ser  modificado 
+de forma incluir  as flags -ftest-coverage -fprofile-arcs. Depois de rodar o executável rode 
+gcov nomearquivo e deverá ser gerado um arquivo .gcov com anotação. 
+ 
+O verificador de cobertura é utilizado para saber qual percentual do código é coberto 
+pelos testes. Neste caso os testes devem cobrir pelo menos 80% do código por módulo. 
+ 
+ 
+ 
+5) Utilize um verificador estático  
+ex. cppcheck, corrigindo os erros apontados pela ferramenta. 
+Utilize cppcheck --enable=warning . 
+para verificar os avisos nos arquivos no diretório corrente (.) 
+ 
+Utilize o verificador estático sempre e desde o início da codificação pois é mais fácil 
+eliminar  os  problemas  logo  quando  eles  aparecem.  Devem  ser  corrigidos  apenas 
+problemas no código feito e não em bibliotecas utilizadas (ex. gtest, catch) 
+ 
+ 
+6) utilizar o verificador dinâmico Valgrind (valgrind.org/) 
+ 
+Devem ser enviados para a tarefa no aprender3.unb.br um arquivo zip onde estão compactados 
+todos os diretórios e arquivos necessários. O documento deve estar na raiz do diretório. Todos 
+os arquivos devem ser enviados compactados em um único arquivo (.zip) e deve ser no formato 
+matricula_primeiro_nome ex: 06_12345_Jose.zip.  Deve conter também um arquivo leiame.txt 
+que diga como o programa deve ser compilado. 
+ 
+Deve ser enviado o diretório “.git” compactado junto com o “.zip” o desenvolvimento 
+orientado a teste será avaliado por ele. 
+ 
+Data de entrega: 
+ 
+20/ 4 /26 
+ 
+Pela tarefa na página da disciplina no aprender3.unb.br    

@@ -1,0 +1,149 @@
+        -:    0:Source:romanos.cpp
+        -:    0:Graph:romanos.gcno
+        -:    0:Data:romanos.gcda
+        -:    0:Runs:0
+        -:    1:#include "romanos.hpp"
+        -:    2:#include <cstring>
+        -:    3:#include <cctype>
+        -:    4:
+        -:    5:// Retorna o valor decimal de um algarismo romano valido
+        -:    6:// Retorna -1 se o algarismo for invalido
+    #####:    7:static int valor_algarismo(char algarismo) {
+    #####:    8:  switch (algarismo) {
+    #####:    9:    case 'I':
+    #####:   10:      return 1;
+    #####:   11:    case 'V':
+    #####:   12:      return 5;
+    #####:   13:    case 'X':
+    #####:   14:      return 10;
+    #####:   15:    case 'L':
+    #####:   16:      return 50;
+    #####:   17:    case 'C':
+    #####:   18:      return 100;
+    #####:   19:    case 'D':
+    #####:   20:      return 500;
+    #####:   21:    case 'M':
+    #####:   22:      return 1000;
+    #####:   23:    default:
+    #####:   24:      return -1;
+        -:   25:  }
+        -:   26:}
+        -:   27:
+        -:   28:// Verifica se um algarismo pode ser repetido
+        -:   29:// V, L, D nao podem ser repetidos
+    #####:   30:static bool pode_repetir(char algarismo) {
+    #####:   31:  return algarismo == 'I' || algarismo == 'X' || algarismo == 'C' ||
+    #####:   32:         algarismo == 'M';
+        -:   33:}
+        -:   34:
+        -:   35:// Verifica se a subtracao eh valida
+        -:   36:// I pode estar antes de V e X
+        -:   37:// X pode estar antes de L e C
+        -:   38:// C pode estar antes de D e M
+    #####:   39:static bool subtracao_valida(char menor, char maior) {
+    #####:   40:  if (menor == 'I') {
+    #####:   41:    return maior == 'V' || maior == 'X';
+        -:   42:  }
+    #####:   43:  if (menor == 'X') {
+    #####:   44:    return maior == 'L' || maior == 'C';
+        -:   45:  }
+    #####:   46:  if (menor == 'C') {
+    #####:   47:    return maior == 'D' || maior == 'M';
+        -:   48:  }
+    #####:   49:  return false;
+        -:   50:}
+        -:   51:
+        -:   52:// Valida se a entrada eh uma string valida nao vazia
+    #####:   53:static bool entrada_valida(char const * num_romano) {
+    #####:   54:  return num_romano != nullptr && num_romano[0] != '\0';
+        -:   55:}
+        -:   56:
+        -:   57:// Valida se o resultado nao excede 3000
+    #####:   58:static bool resultado_valido(int resultado) {
+    #####:   59:  return resultado >= 0 && resultado <= 3000;
+        -:   60:}
+        -:   61:
+    #####:   62:int romanos_para_decimal(char const * num_romano) {
+        -:   63:  // String vazia eh invalida
+    #####:   64:  if (!entrada_valida(num_romano)) {
+    #####:   65:    return -1;
+        -:   66:  }
+        -:   67:
+    #####:   68:  int comprimento = std::strlen(num_romano);
+    #####:   69:  int resultado = 0;
+    #####:   70:  int i = 0;
+        -:   71:
+    #####:   72:  while (i < comprimento) {
+    #####:   73:    int valor_atual = valor_algarismo(num_romano[i]);
+        -:   74:
+        -:   75:    // Algarismo invalido
+    #####:   76:    if (valor_atual == -1) {
+    #####:   77:      return -1;
+        -:   78:    }
+        -:   79:
+        -:   80:    // Proximo algarismo
+    #####:   81:    if (i + 1 < comprimento) {
+    #####:   82:      int proximo_valor = valor_algarismo(num_romano[i + 1]);
+        -:   83:
+    #####:   84:      if (proximo_valor == -1) {
+    #####:   85:        return -1;
+        -:   86:      }
+        -:   87:
+        -:   88:      // Se o proximo eh maior, eh subtracao
+    #####:   89:      if (proximo_valor > valor_atual) {
+        -:   90:        // Verifica se a subtracao eh valida
+    #####:   91:        if (!subtracao_valida(num_romano[i], num_romano[i + 1])) {
+    #####:   92:          return -1;
+        -:   93:        }
+        -:   94:
+        -:   95:        // Verifica se ha outro algarismo apos e se eh valido
+    #####:   96:        if (i + 2 < comprimento) {
+    #####:   97:          int proximo_proximo = valor_algarismo(num_romano[i + 2]);
+    #####:   98:          if (proximo_proximo == -1) {
+    #####:   99:            return -1;
+        -:  100:          }
+        -:  101:          // Apos uma subtracao, o proximo deve ser menor ou igual
+    #####:  102:          if (proximo_proximo >= proximo_valor) {
+    #####:  103:            return -1;
+        -:  104:          }
+        -:  105:        }
+        -:  106:
+    #####:  107:        resultado += proximo_valor - valor_atual;
+    #####:  108:        i += 2;
+    #####:  109:        continue;
+    #####:  110:      }
+        -:  111:    }
+        -:  112:
+        -:  113:    // Verifica repeticao invalida
+    #####:  114:    if (i + 1 < comprimento && num_romano[i] == num_romano[i + 1]) {
+    #####:  115:      if (!pode_repetir(num_romano[i])) {
+    #####:  116:        return -1;
+        -:  117:      }
+        -:  118:
+        -:  119:      // Conta quantas vezes se repete
+    #####:  120:      int contador = 1;
+    #####:  121:      while (i + contador < comprimento &&
+    #####:  122:             num_romano[i + contador] == num_romano[i]) {
+    #####:  123:        contador++;
+        -:  124:      }
+        -:  125:
+        -:  126:      // I, X, C, M podem repetir no maximo 3 vezes
+    #####:  127:      if (contador > 3) {
+    #####:  128:        return -1;
+        -:  129:      }
+        -:  130:
+    #####:  131:      resultado += valor_atual * contador;
+    #####:  132:      i += contador;
+    #####:  133:    } else {
+    #####:  134:      resultado += valor_atual;
+    #####:  135:      i++;
+        -:  136:    }
+        -:  137:  }
+        -:  138:
+        -:  139:  // Verifica se o resultado nao excede 3000
+    #####:  140:  if (!resultado_valido(resultado)) {
+    #####:  141:    return -1;
+        -:  142:  }
+        -:  143:
+    #####:  144:  return resultado;
+        -:  145:}
