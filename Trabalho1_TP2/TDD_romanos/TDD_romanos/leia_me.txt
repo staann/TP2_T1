@@ -1,12 +1,12 @@
 ﻿# Trabalho 1 - TDD: Conversor de Numerais Romanos
 
 ## Objetivo
-Converter algarismos romanos para números decimais usando a metodologia TDD (Test Driven Development).
+Converter algarismos romanos para números decimais usando a metodologia TDD.
 
 ## Limitacoes
 - Números romanos máximo: 3000
 - Tamanho máximo da string: 30 caracteres
-- Retorna -1 para números inválidos
+- Retorna -1 para números invlidos
 
 ## Compilacao
 
@@ -70,7 +70,7 @@ Foram implementados testes para:
 - String vazia
 - Numeros maiores que 3000
 
-Total: 15 casos de teste (com 33 assertions)
+Total: 15 casos de teste
 
 ## Historico de Commits
 
